@@ -1,0 +1,10 @@
+class CreateOffenses < ActiveRecord::Migration[5.2]
+  def change
+    create_table :offenses do |t|
+      t.string :name 
+      t.datetime :date
+      t.integer :neighborhood_id
+      t.integer :perpetrator_id
+    end
+  end
+end
