@@ -1,16 +1,21 @@
 require 'faker'
+require_all 'app'
+
 Perpetrator.destroy_all
-Neighborhood.destroy_all
-Offense.destroy_all 
+#Neighborhood.destroy_all
+#Offense.destroy_all 
 
 
 100.times do
     Perpetrator.create(name:Faker::Name.name, age:rand(15..65), gender: Faker::Gender.type) 
 end
 
-Neighborhood.create(name: Neighboroods.all.each {|x| x})
+GetPrograms.neighborhoods.each do |x|
+    Neighborhood.create(name: x)
+end
 
-#GetPrograms.each do |x
-Offense.create(name: GetPrograms.offense_name, date: GetPrograms.offense_date, neighborhood_id: Neighborhood.all.sample.id, perpetrator_id: Perpetrator.all.sample.id)
+GetPrograms.parse.each do |x|
+    Offense.create(name: x['offense'], date: x['report_datetime'], neighborhood_id: Neighborhood.all.sample.id, perpetrator_id: Perpetrator.all.sample.id)
+end
 
-
+puts 'done'

@@ -1,4 +1,5 @@
 require_relative '../config/environment'
 
 
-p Neighborhood.most_offenses
+
+p Offense.all.to_a

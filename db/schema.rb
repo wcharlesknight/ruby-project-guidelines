@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2020_12_03_165945) do
 
   create_table "neighborhoods", force: :cascade do |t|
     t.string "name"
-    t.integer "offense_id"
   end
 
   create_table "offenses", force: :cascade do |t|
