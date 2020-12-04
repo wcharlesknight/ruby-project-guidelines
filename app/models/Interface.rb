@@ -1,3 +1,5 @@
+#require "awesome_print"
+
 class Interface
     def self.start
         puts 'Hello'
@@ -21,13 +23,28 @@ class Interface
     def self.perpetrator_offenses
         puts 'What person would you like to look at?'
         user_input = STDIN.gets.chomp
+        self.get_perps(user_input)
+        #Perpetrator.list_of_offenses(user_input)
+    end
+
+    def self.get_perps(user_input)
         Perpetrator.list_of_offenses(user_input)
+        puts "Hit any key to return to menu"
+        user_input = STDIN.gets.chomp
+        self.start
+    end
+
+    def self.get_neighborhoods(user_input)
+        p Neighborhood.offenses(user_input).each { |x| x}
+        puts "Hit any key to return to menu"
+        user_input = STDIN.gets.chomp
+        self.start
     end
 
     def self.neighborhood_offenses
         puts 'What neighborhood would you like to look at?'
         user_input = STDIN.gets.chomp
-        Neighborhood.offenses(user_input)
+        self.get_neighborhoods(user_input)
     end 
 
 
