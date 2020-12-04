@@ -1,24 +1,44 @@
-#require "awesome_print"
+require "awesome_print"
 
 class Interface
     def self.start
-        puts 'Hello'
-        puts '1. search criminals'
-        puts '2. search neighborhoods'
-        puts '3. exit'
+        puts 'Hello, welcome to the Seattle criminal database'
+        puts  " "
+        puts 'type "list" for list of criminals'
+        puts 'type "c" to search criminals'
+        puts 'type "n" to search neighborhoods'
+        puts 'type "most wanted" to see top 10 criminals'
+        puts 'type "community" to see the neighborhood with the most crimes'
+        puts 'type "exit" to exit'
         user_input = STDIN.gets.chomp
         self.input(user_input)   
     end 
 
     def self.input(user_input)
-        if user_input == "2"
+        if user_input == "n"
             self.neighborhood_offenses
-        elsif user_input == "1"
+        elsif user_input == "c"
             self.perpetrator_offenses
-        else
+        elsif user_input == "list"
+            self.list
+        elsif user_input == "most wanted"
+            self.most_wanted
+        elsif
             self.exit
         end 
     end 
+
+    def self.list
+        Perpetrator.list_of_perps
+        puts " "
+        self.start
+    end
+
+    def self.most_wanted
+        ap Perpetrator.most_offenses
+        puts " "
+        self.start
+    end
 
     def self.perpetrator_offenses
         puts 'What person would you like to look at?'
@@ -28,14 +48,14 @@ class Interface
     end
 
     def self.get_perps(user_input)
-        Perpetrator.list_of_offenses(user_input)
+        ap Perpetrator.list_of_offenses(user_input).each { |x| x}
         puts "Hit any key to return to menu"
         user_input = STDIN.gets.chomp
         self.start
     end
 
     def self.get_neighborhoods(user_input)
-        p Neighborhood.offenses(user_input).each { |x| x}
+        ap Neighborhood.offenses(user_input).each { |x| x}
         puts "Hit any key to return to menu"
         user_input = STDIN.gets.chomp
         self.start
@@ -49,6 +69,6 @@ class Interface
 
 
     def self.exit
-        puts 'goodbye!'
+        p 'goodbye!'
     end 
 end 

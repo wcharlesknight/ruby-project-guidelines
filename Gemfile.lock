@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/awesome-print/awesome_print.git
+  revision: 0d7b6debde49e17ac712936c08370f5f6521b884
+  branch: master
+  specs:
+    awesome_print (1.8.0)
+
+GIT
   remote: https://github.com/faker-ruby/faker.git
   revision: ec06d217644cf3d66bd0e658c9b168af8f0c38c7
   branch: master
@@ -57,6 +64,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 5.2.3)
+  awesome_print!
   faker!
   pry
   rake
