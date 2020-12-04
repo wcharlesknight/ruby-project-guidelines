@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 2020_12_03_165945) do
   create_table "offenses", force: :cascade do |t|
     t.string "name"
     t.datetime "date"
-    t.integer "neighborhood_id"
+    t.string "neighborhood_name"
     t.integer "perpetrator_id"
+    t.index ["perpetrator_id"], name: "index_offenses_on_perpetrator_id"
   end
 
   create_table "perpetrators", force: :cascade do |t|

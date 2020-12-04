@@ -15,7 +15,7 @@ GetPrograms.neighborhoods.each do |x|
 end
 
 GetPrograms.parse.each do |x|
-    Offense.create(name: x['offense'], date: x['report_datetime'], neighborhood_id: Neighborhood.all.sample.id, perpetrator_id: Perpetrator.all.sample.id)
+    Offense.create(name: x['offense'], date: x['report_datetime'], neighborhood_name: x['mcpp'], perpetrator_id: Perpetrator.all.sample.id)
 end
 
 puts 'done'

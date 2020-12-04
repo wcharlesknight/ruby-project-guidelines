@@ -3,8 +3,8 @@ class CreateOffenses < ActiveRecord::Migration[5.2]
     create_table :offenses do |t|
       t.string :name 
       t.datetime :date
-      t.integer :neighborhood_id
-      t.integer :perpetrator_id
+      t.string :neighborhood_name
+      t.references :perpetrator
     end
   end
 end
