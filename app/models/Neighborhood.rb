@@ -3,6 +3,7 @@ class Neighborhood < ActiveRecord::Base
     has_many :perpetrators, through: :offenses 
 
     def self.offenses(name)
+        name.upcase!
         offenses = Neighborhood.where(name: name)
         offenses.map do |s|
             Offense.where(neighborhood_id: s.id)

@@ -6,5 +6,5 @@ require_relative '../config/environment'
 
 #p Neighborhood.perpetrators("QUEEN ANNE")
 
-p Perpetrator.most_offenses
+p Interface.start
 #p Perpetrator.list_of_offenses("Colby Lehner")
