@@ -9,9 +9,10 @@ class Interface
         puts "                          type 'c' to search criminals                                               "  
         puts '                          type "n" to search neighborhoods'
         puts '                          type "most wanted" to see top 10 criminals                                   '
-        puts '                          type "community" to see the neighborhoods with the most crimes                '
-        puts '                          type "friendly" to see the neighborhoods with the least crimes                '
+        puts '                          type "bad" to see the neighborhoods with the most crimes                '
+        puts '                          type "good" to see the neighborhoods with the least crimes                '
         puts '                          type "date" to see the month with the most crimes                              ' 
+        puts '                          type "crimes" to see top 5 committed crimes                             '
         puts '                          type "exit" to exit                                                            '
         user_input = STDIN.gets.chomp
         self.input(user_input)   
@@ -26,9 +27,11 @@ class Interface
             self.list
         elsif user_input == "most wanted"
             self.most_wanted
-        elsif user_input == "community"            
+        elsif user_input == "crimes"
+            self.crimes
+        elsif user_input == "bad"            
             self.worst_neighborhood
-        elsif user_input == "friendly"
+        elsif user_input == "good"
             self.best_neighborhood
         elsif user_input == "date"
             self.worst_month
@@ -44,8 +47,16 @@ class Interface
     end
 
     def self.most_wanted
-        ap  Perpetrator.m_wanted
+        Perpetrator.m_wanted.each_with_index do |x, index|
+            x.map { |criminal| ap "#{index + 1}. #{criminal}" }
+        end
         puts " "
+        self.start
+    end
+
+    def self.crimes
+        Offense.most_common_offense
+        puts "  "
         self.start
     end
 
@@ -56,40 +67,40 @@ class Interface
     end
 
     def self.worst_neighborhood
-        p Neighborhood.most_offenses
+        Neighborhood.most_offenses
         puts " "
         self.start
     end
 
     def self.best_neighborhood
-        p Neighborhood.least_offenses
+        Neighborhood.least_offenses
         puts "  "
         self.start
     end
 
     def self.perpetrator_offenses
-        puts '                                 What person would you like to look at?                                             '
+        puts '                          What person would you like to look at?                                             '
         user_input = STDIN.gets.chomp
         self.get_perps(user_input)
         #Perpetrator.list_of_offenses(user_input)
     end
 
     def self.get_perps(user_input)
-        ap Perpetrator.list_of_offenses(user_input).each { |x| x}
-        puts "                                 Hit any key to return to menu                                                                 "
+        ap Perpetrator.list_of_offenses(user_input).each { |x| x }
+        puts "                          Hit any key to return to menu                                                                 "
         user_input = STDIN.gets.chomp
         self.start
     end
 
     def self.get_neighborhoods(user_input)
         ap Neighborhood.offenses(user_input).map { |x| "#{x.name} happened on #{x.date} in #{x.neighborhood_name} by #{Perpetrator.p_name(x.perpetrator_id)}"  }
-        puts "                                 Hit any key to return to menu                      "
+        puts "                          Hit any key to return to menu                      "
         user_input = STDIN.gets.chomp
         self.start
     end
 
     def self.neighborhood_offenses
-        puts '                                What neighborhood would you like to look at?                          '
+        puts '                          What neighborhood would you like to look at?                          '
         user_input = STDIN.gets.chomp
         self.get_neighborhoods(user_input)
     end 

@@ -33,4 +33,9 @@ class Offense < ActiveRecord::Base
         end
     end
 
+    def self.most_common_offense
+        top = Offense.group("name").order(Arel.sql("count(name) DESC")).limit(5)
+        top.each_with_index.map {|x, index| ap "#{index + 1}. #{x.name}" } 
+    end
+
 end

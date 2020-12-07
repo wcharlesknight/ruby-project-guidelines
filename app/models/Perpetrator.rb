@@ -6,22 +6,17 @@ class Perpetrator < ActiveRecord::Base
 
 
     def self.p_name(id)
-        Perpetrator.where(id: id).map { |x| x.name } 
+        name = Perpetrator.where(id: id).map { |x| x.name }
+        name
     end
 
     def self.list_of_offenses(name)
-        offenses = Perpetrator.where(name: name)
-        list = offenses.map do |o|
-            Offense.where(perpetrator_id: o.id).to_a 
-        end
-        # list.each do |o|
-        #     o.map { |x| puts "#{x.name} #{x.date} #{x.neighborhood_name}" }
-        # end
+        Perpetrator.where(name: name).first.offenses.map { |x| "Crime: #{x.name}, Date: #{x.date}, Neighborhood: #{x.neighborhood_name}"}
     end
 
     def self.m_wanted
         offense = Offense.group("perpetrator_id").order(Arel.sql("count(perpetrator_id) DESC")).limit(10)
-        offense.map { |x|  "#{self.p_name(x.perpetrator_id)}" }
+        offense.map { |x|  self.p_name(x.perpetrator_id) }
         #offense
     end
 

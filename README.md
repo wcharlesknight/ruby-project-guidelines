@@ -19,9 +19,10 @@
   3. “friendly” for list of the 10 neighborhoods with the least amount of crimes.
   4. “list” will list out the names of all the perpetrators.
   5. “most wanted” will give you a list of the top criminals with the most crimes.
-  6. “c” and then put in the criminal's name will list out the crimes committed by the desired perpetrator.
-  7. "date" to see the month with the most crimes.
-  8. To exit the command, type anything that is not one of the mentioned commands
+  6. "crimes" to see top 5 committed crime
+  7. “c” and then put in the criminal's name will list out the crimes committed by the desired perpetrator.
+  8. "date" to see the month with the most crimes.
+  9. To exit the command, type anything that is not one of the mentioned commands
 
 # Link to demo video
   INSERT HERE
