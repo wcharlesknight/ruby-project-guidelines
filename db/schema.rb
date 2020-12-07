@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_12_03_165945) do
     t.datetime "date"
     t.string "neighborhood_name"
     t.integer "perpetrator_id"
-    t.index ["perpetrator_id"], name: "index_offenses_on_perpetrator_id"
   end
 
   create_table "perpetrators", force: :cascade do |t|

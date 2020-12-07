@@ -4,7 +4,7 @@ class CreateOffenses < ActiveRecord::Migration[5.2]
       t.string :name 
       t.datetime :date
       t.string :neighborhood_name
-      t.references :perpetrator
+      t.integer :perpetrator_id
     end
   end
 end
