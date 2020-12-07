@@ -10,6 +10,7 @@ class Interface
         puts '                          type "n" to search neighborhoods'
         puts '                          type "most wanted" to see top criminal                                        '
         puts '                          type "community" to see the neighborhood with the most crimes                '
+        puts '                          type "date" to see the month with the most crimes                              ' 
         puts '                          type "exit" to exit                                                            '
         user_input = STDIN.gets.chomp
         self.input(user_input)   
@@ -26,6 +27,8 @@ class Interface
             self.most_wanted
         elsif user_input == "community"            
             self.worst_neighborhood
+        elsif user_input == "date"
+            self.worst_month
         else
             self.exit
         end 
@@ -40,6 +43,12 @@ class Interface
     def self.most_wanted
         puts             "                    #{Perpetrator.most_offenses}                          " 
         puts " "
+        self.start
+    end
+
+    def self.worst_month
+        ap  Offense.dangerous_month
+        puts "  "
         self.start
     end
 
@@ -64,14 +73,14 @@ class Interface
     end
 
     def self.get_neighborhoods(user_input)
-        ap Neighborhood.offenses(user_input).each { |x| x}
-        puts "Hit any key to return to menu"
+        Neighborhood.offenses(user_input).map { |x| ap "#{x.name} happened on #{x.date} in #{x.neighborhood_name} by #{Perpetrator.p_name(x.perpetrator_id)} "  }
+        puts "                                 Hit any key to return to menu                      "
         user_input = STDIN.gets.chomp
         self.start
     end
 
     def self.neighborhood_offenses
-        puts 'What neighborhood would you like to look at?'
+        puts '                                What neighborhood would you like to look at?                          '
         user_input = STDIN.gets.chomp
         self.get_neighborhoods(user_input)
     end 

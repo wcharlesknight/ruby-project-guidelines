@@ -11,6 +11,10 @@ class Perpetrator < ActiveRecord::Base
     #     end     
     # end
 
+    def self.p_name(id)
+       Perpetrator.where(id: id).map { |x| x.name }
+    end
+
     def self.list_of_offenses(name)
         offenses = Perpetrator.where(name: name)
         list = offenses.map do |o|
