@@ -14,3 +14,4 @@ p Interface.start
 #p Perpetrator.list_of_offenses("Bryce Grant")
 #p Perpetrator.list_of_perps
 #p Offense.dangerous_month
+#p Perpetrator.m_wanted

@@ -8,8 +8,9 @@ class Interface
         puts "                          type 'list' for list of criminals                                            "
         puts "                          type 'c' to search criminals                                               "  
         puts '                          type "n" to search neighborhoods'
-        puts '                          type "most wanted" to see top criminal                                        '
-        puts '                          type "community" to see the neighborhood with the most crimes                '
+        puts '                          type "most wanted" to see top 10 criminals                                   '
+        puts '                          type "community" to see the neighborhoods with the most crimes                '
+        puts '                          type "friendly" to see the neighborhoods with the least crimes                '
         puts '                          type "date" to see the month with the most crimes                              ' 
         puts '                          type "exit" to exit                                                            '
         user_input = STDIN.gets.chomp
@@ -27,6 +28,8 @@ class Interface
             self.most_wanted
         elsif user_input == "community"            
             self.worst_neighborhood
+        elsif user_input == "friendly"
+            self.best_neighborhood
         elsif user_input == "date"
             self.worst_month
         else
@@ -41,7 +44,7 @@ class Interface
     end
 
     def self.most_wanted
-        puts             "                    #{Perpetrator.most_offenses}                          " 
+        ap  Perpetrator.m_wanted
         puts " "
         self.start
     end
@@ -55,6 +58,12 @@ class Interface
     def self.worst_neighborhood
         p Neighborhood.most_offenses
         puts " "
+        self.start
+    end
+
+    def self.best_neighborhood
+        p Neighborhood.least_offenses
+        puts "  "
         self.start
     end
 
@@ -73,7 +82,7 @@ class Interface
     end
 
     def self.get_neighborhoods(user_input)
-        Neighborhood.offenses(user_input).map { |x| ap "#{x.name} happened on #{x.date} in #{x.neighborhood_name} by #{Perpetrator.p_name(x.perpetrator_id)} "  }
+        ap Neighborhood.offenses(user_input).map { |x| "#{x.name} happened on #{x.date} in #{x.neighborhood_name} by #{Perpetrator.p_name(x.perpetrator_id)}"  }
         puts "                                 Hit any key to return to menu                      "
         user_input = STDIN.gets.chomp
         self.start

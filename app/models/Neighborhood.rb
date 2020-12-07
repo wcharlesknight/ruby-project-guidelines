@@ -16,9 +16,14 @@ class Neighborhood < ActiveRecord::Base
     end
 
     def self.most_offenses
-        offense = Offense.group("neighborhood_name").order("count(neighborhood_name) DESC").limit(10)
+        offense = Offense.group("neighborhood_name").order(Arel.sql("count(neighborhood_name) DESC")).limit(10)
         ap offense.map { |x| "#{x.neighborhood_name} had #{self.offenses(x.neighborhood_name).count} crimes" }
     end
+
+    def self.least_offenses
+        offense = Offense.group("neighborhood_name").order(Arel.sql("count(neighborhood_name) ASC")).limit(10)
+        pu offense.map {|x| "#{x.neighborhood_name} had #{self.offenses(x.neighborhood_name).count} crime(s)" }
+      end
 
 end
 
