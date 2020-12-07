@@ -38,4 +38,6 @@ class Offense < ActiveRecord::Base
         top.each_with_index.map {|x, index| ap "#{index + 1}. #{x.name}" } 
     end
 
+    ##
+
 end
