@@ -7,7 +7,7 @@ require_relative '../config/environment'
 #p Neighborhood.offenses("QUEEN ANNE")
 
 #p Neighborhood.most_offenses(5)
-
+#p Offense.count("Shoplifting")
 p Interface.start
 #p Offense.most_common_offense
 #p Perpetrator.p_name(2)
