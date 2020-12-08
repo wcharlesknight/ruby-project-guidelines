@@ -24,5 +24,7 @@ class Perpetrator < ActiveRecord::Base
        puts Perpetrator.all.map { |x| x.name}.to_a
     end
 
+
+
 end
 
