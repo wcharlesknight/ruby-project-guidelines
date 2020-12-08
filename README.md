@@ -25,7 +25,9 @@
   9. To exit the command, type anything that is not one of the mentioned commands
 
 # Link to demo video
-  INSERT HERE
+  "./directons.mp4" 
+  
+  it is part of the application!
 # Contributors
   Matt Choi
   Charlie Knight

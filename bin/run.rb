@@ -8,7 +8,7 @@ require_relative '../config/environment'
 
 #p Neighborhood.most_offenses(5)
 #p Offense.count("Shoplifting")
-p Interface.start
+#p Interface.start
 #p Offense.most_common_offense
 #p Perpetrator.p_name(2)
 #p Perpetrator.list_of_offenses("Miss Roy Johnston")
@@ -16,3 +16,4 @@ p Interface.start
 #p Perpetrator.list_of_perps
 #p Offense.dangerous_month
 #p Perpetrator.m_wanted
+p Neighborhood.most_recent_crime("BELLTOWN")

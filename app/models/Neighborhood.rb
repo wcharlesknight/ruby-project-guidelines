@@ -25,6 +25,10 @@ class Neighborhood < ActiveRecord::Base
         offense.each_with_index.map {|x, index| ap "#{index + 1}. #{x.neighborhood_name} had #{self.offenses(x.neighborhood_name).count} crime(s)" }
     end
 
+    def self.most_recent_crime(name)
+        
+    end
+
 end
 
 ##
